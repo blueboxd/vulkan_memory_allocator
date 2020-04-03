@@ -279,6 +279,13 @@ available through VmaAllocatorCreateInfo::pRecordSettings.
     #endif
 #endif
 
+// Used to silence warnings for implicit fallthrough.
+#if __has_cpp_attribute(clang::fallthrough)
+#define VMA_FALLTHROUGH [[clang::fallthrough]];
+#else
+#define VMA_FALLTHROUGH
+#endif
+
 /** \struct VmaAllocator
 \brief Represents main object of this library initialized.
 
@@ -11277,6 +11284,7 @@ void VmaDeviceMemoryBlock::Init(
     default:
         VMA_ASSERT(0);
         // Fall-through.
+        VMA_FALLTHROUGH
     case 0:
         m_pMetadata = vma_new(hAllocator, VmaBlockMetadata_Generic)(hAllocator->GetAllocationCallbacks(),
             false); // isVirtual
