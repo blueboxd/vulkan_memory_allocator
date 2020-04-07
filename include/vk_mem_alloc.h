@@ -11283,8 +11283,6 @@ void VmaDeviceMemoryBlock::Init(
         break;
     default:
         VMA_ASSERT(0);
-        // Fall-through.
-        VMA_FALLTHROUGH
     case 0:
         m_pMetadata = vma_new(hAllocator, VmaBlockMetadata_Generic)(hAllocator->GetAllocationCallbacks(),
             false); // isVirtual
