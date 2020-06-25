@@ -2505,11 +2505,19 @@ void *vma_aligned_alloc(size_t alignment, size_t size)
 }
 #elif defined(__APPLE__) || defined(__ANDROID__) || (defined(__linux__) && defined(__GLIBCXX__) && !defined(_GLIBCXX_HAVE_ALIGNED_ALLOC))
 #include <cstdlib>
-void *vma_aligned_alloc(size_t alignment, size_t size)
+void *aligned_alloc(size_t alignment, size_t size)
 {
 #if defined(__APPLE__)
+#include <AvailabilityMacros.h>
+#endif
+
+void *vma_aligned_alloc(size_t alignment, size_t size)
+{
+#if defined(__APPLE__) && (defined(MAC_OS_X_VERSION_10_15) || defined(__IPHONE_13_0))
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_15 || __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_13_0
     if (__builtin_available(macOS 10.15, iOS 13, *))
-        return aligned_alloc(size, alignment);
+        return aligned_alloc(alignment, size);
+#endif
 #endif
     // alignment must be >= sizeof(void*)
     if(alignment < sizeof(void*))
