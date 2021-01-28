@@ -36,9 +36,9 @@ source_set("vulkan_memory_allocator") {
 
 source_set("vulkan_memory_allocator_with_usage") {
   sources = [
-    "src/VmaUsage.cpp",
-    "src/VmaUsage.h",
     "src/vk_mem_alloc.h",
+    "vma.cpp",
   ]
+  deps = [ "//third_party/vulkan-deps/vulkan-headers/src:vulkan_headers" ]
   public_configs = [ ":vulkan_memory_allocator_config" ]
 }
