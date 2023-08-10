@@ -64,6 +64,8 @@ include all public interface declarations. Example:
 //#define VMA_MEMORY_BUDGET 0
 //#define VMA_STATS_STRING_ENABLED 0
 //#define VMA_MAPPING_HYSTERESIS_ENABLED 0
+#define VMA_STATIC_VULKAN_FUNCTIONS 0
+#define VMA_DYNAMIC_VULKAN_FUNCTIONS 1
 
 //#define VMA_VULKAN_VERSION 1003000 // Vulkan 1.3
 //#define VMA_VULKAN_VERSION 1002000 // Vulkan 1.2
