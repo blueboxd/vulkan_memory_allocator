@@ -2804,7 +2804,7 @@ void* vma_aligned_alloc(size_t alignment, size_t size)
     return aligned_alloc(alignment, size);
 }
 #else
-static void* vma_aligned_alloc(size_t alignment, size_t size)
+void* vma_aligned_alloc(size_t alignment, size_t size)
 {
     VMA_ASSERT(0 && "Could not implement aligned_alloc automatically. Please enable C++17 or later in your compiler or provide custom implementation of macro VMA_SYSTEM_ALIGNED_MALLOC (and VMA_SYSTEM_ALIGNED_FREE if needed) using the API of your system.");
     return VMA_NULL;
